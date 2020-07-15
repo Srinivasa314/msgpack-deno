@@ -2,30 +2,31 @@ import { ExtensionCodecType } from "./ExtensionCodec.ts";
 import { Encoder } from "./Encoder.ts";
 import { ContextOf, SplitUndefined } from "./context.ts";
 
-export type EncodeOptions<ContextType = undefined> = Partial<
-  Readonly<{
-    extensionCodec: ExtensionCodecType<ContextType>;
-    maxDepth: number;
-    initialBufferSize: number;
-    sortKeys: boolean;
+export type EncodeOptions<ContextType = undefined> =
+  & Partial<
+    Readonly<{
+      extensionCodec: ExtensionCodecType<ContextType>;
+      maxDepth: number;
+      initialBufferSize: number;
+      sortKeys: boolean;
 
-    /**
+      /**
      * If `true`, non-integer numbers are encoded in float32, not in float64 (the default).
      *
      * Only use it if precisions don't matter.
      */
-    forceFloat32: boolean;
+      forceFloat32: boolean;
 
-    /**
+      /**
      * If `true`, an object property with `undefined` value are ignored.
      * e.g. `{ foo: undefined }` will be encoded as `{}`, as `JSON.stringify()` does.
      *
      * The default is `false`. Note that it needs more time to encode.
      */
-    ignoreUndefined: boolean;
-  }>
-> &
-  ContextOf<ContextType>;
+      ignoreUndefined: boolean;
+    }>
+  >
+  & ContextOf<ContextType>;
 
 const defaultEncodeOptions: EncodeOptions = {};
 
@@ -37,7 +38,8 @@ const defaultEncodeOptions: EncodeOptions = {};
  */
 export function encode<ContextType>(
   value: unknown,
-  options: EncodeOptions<SplitUndefined<ContextType>> = defaultEncodeOptions as any,
+  options: EncodeOptions<SplitUndefined<ContextType>> =
+    defaultEncodeOptions as any,
 ): Uint8Array {
   const encoder = new Encoder<ContextType>(
     options.extensionCodec,

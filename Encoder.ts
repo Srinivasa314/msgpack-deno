@@ -1,4 +1,9 @@
-import { utf8EncodeJs, utf8Count, TEXT_ENCODER_THRESHOLD, utf8EncodeTE } from "./utils/utf8.ts";
+import {
+  utf8EncodeJs,
+  utf8Count,
+  TEXT_ENCODER_THRESHOLD,
+  utf8EncodeTE,
+} from "./utils/utf8.ts";
 import { ExtensionCodec, ExtensionCodecType } from "./ExtensionCodec.ts";
 import { setInt64, setUint64 } from "./utils/int.ts";
 import { ensureUint8Array } from "./utils/typedArrays.ts";
@@ -13,7 +18,8 @@ export class Encoder<ContextType> {
   private bytes = new Uint8Array(this.view.buffer);
 
   constructor(
-    readonly extensionCodec: ExtensionCodecType<ContextType> = ExtensionCodec.defaultCodec as any,
+    readonly extensionCodec: ExtensionCodecType<ContextType> = ExtensionCodec
+      .defaultCodec as any,
     readonly context: ContextType,
     readonly maxDepth = DEFAULT_MAX_DEPTH,
     readonly initialBufferSize = DEFAULT_INITIAL_BUFFER_SIZE,
@@ -186,7 +192,9 @@ export class Encoder<ContextType> {
       this.encodeMap(object as Record<string, unknown>, depth);
     } else {
       // symbol, function and other special object come here unless extensionCodec handles them.
-      throw new Error(`Unrecognized object: ${Object.prototype.toString.apply(object)}`);
+      throw new Error(
+        `Unrecognized object: ${Object.prototype.toString.apply(object)}`,
+      );
     }
   }
 
@@ -232,7 +240,10 @@ export class Encoder<ContextType> {
     }
   }
 
-  countWithoutUndefined(object: Record<string, unknown>, keys: ReadonlyArray<string>): number {
+  countWithoutUndefined(
+    object: Record<string, unknown>,
+    keys: ReadonlyArray<string>,
+  ): number {
     let count = 0;
 
     for (const key of keys) {
@@ -250,7 +261,9 @@ export class Encoder<ContextType> {
       keys.sort();
     }
 
-    const size = this.ignoreUndefined ? this.countWithoutUndefined(object, keys) : keys.length;
+    const size = this.ignoreUndefined
+      ? this.countWithoutUndefined(object, keys)
+      : keys.length;
 
     if (size < 16) {
       // fixmap

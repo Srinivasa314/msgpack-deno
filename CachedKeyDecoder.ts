@@ -11,7 +11,10 @@ const DEFAULT_MAX_LENGTH_PER_KEY = 16;
 export class CachedKeyDecoder {
   private readonly caches: Array<Array<KeyCacheRecord>>;
 
-  constructor(readonly maxKeyLength = DEFAULT_MAX_KEY_LENGTH, readonly maxLengthPerKey = DEFAULT_MAX_LENGTH_PER_KEY) {
+  constructor(
+    readonly maxKeyLength = DEFAULT_MAX_KEY_LENGTH,
+    readonly maxLengthPerKey = DEFAULT_MAX_LENGTH_PER_KEY,
+  ) {
     // avoid `new Array(N)` to create a non-sparse array for performance.
     this.caches = [];
     for (let i = 0; i < this.maxKeyLength; i++) {
@@ -23,11 +26,16 @@ export class CachedKeyDecoder {
     return byteLength > 0 && byteLength <= this.maxKeyLength;
   }
 
-  private get(bytes: Uint8Array, inputOffset: number, byteLength: number): string | null {
+  private get(
+    bytes: Uint8Array,
+    inputOffset: number,
+    byteLength: number,
+  ): string | null {
     const records = this.caches[byteLength - 1];
     const recordsLength = records.length;
 
-    FIND_CHUNK: for (let i = 0; i < recordsLength; i++) {
+    FIND_CHUNK:
+    for (let i = 0; i < recordsLength; i++) {
       const record = records[i];
       const recordBytes = record.bytes;
 
@@ -54,7 +62,11 @@ export class CachedKeyDecoder {
     }
   }
 
-  public decode(bytes: Uint8Array, inputOffset: number, byteLength: number): string {
+  public decode(
+    bytes: Uint8Array,
+    inputOffset: number,
+    byteLength: number,
+  ): string {
     const cachedValue = this.get(bytes, inputOffset, byteLength);
     if (cachedValue != null) {
       return cachedValue;
@@ -62,7 +74,11 @@ export class CachedKeyDecoder {
 
     const value = utf8DecodeJs(bytes, inputOffset, byteLength);
     // Ensure to copy a slice of bytes because the byte may be NodeJS Buffer and Buffer#slice() returns a reference to its internal ArrayBuffer.
-    const slicedCopyOfBytes = Uint8Array.prototype.slice.call(bytes, inputOffset, inputOffset + byteLength);
+    const slicedCopyOfBytes = Uint8Array.prototype.slice.call(
+      bytes,
+      inputOffset,
+      inputOffset + byteLength,
+    );
     this.store(slicedCopyOfBytes, value);
     return value;
   }

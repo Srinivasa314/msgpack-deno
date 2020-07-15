@@ -38,7 +38,11 @@ export function utf8Count(str: string): number {
   return byteLength;
 }
 
-export function utf8EncodeJs(str: string, output: Uint8Array, outputOffset: number): void {
+export function utf8EncodeJs(
+  str: string,
+  output: Uint8Array,
+  outputOffset: number,
+): void {
   const strLength = str.length;
   let offset = outputOffset;
   let pos = 0;
@@ -84,12 +88,20 @@ export function utf8EncodeJs(str: string, output: Uint8Array, outputOffset: numb
 const sharedTextEncoder = new TextEncoder();
 export const TEXT_ENCODER_THRESHOLD = 200;
 
-function utf8EncodeTEencode(str: string, output: Uint8Array, outputOffset: number): void {
+function utf8EncodeTEencode(
+  str: string,
+  output: Uint8Array,
+  outputOffset: number,
+): void {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   output.set(sharedTextEncoder!.encode(str), outputOffset);
 }
 
-function utf8EncodeTEencodeInto(str: string, output: Uint8Array, outputOffset: number): void {
+function utf8EncodeTEencodeInto(
+  str: string,
+  output: Uint8Array,
+  outputOffset: number,
+): void {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   sharedTextEncoder!.encodeInto(str, output.subarray(outputOffset));
 }
@@ -98,7 +110,11 @@ export const utf8EncodeTE = utf8EncodeTEencodeInto;
 
 const CHUNK_SIZE = 0x1_000;
 
-export function utf8DecodeJs(bytes: Uint8Array, inputOffset: number, byteLength: number): string {
+export function utf8DecodeJs(
+  bytes: Uint8Array,
+  inputOffset: number,
+  byteLength: number,
+): string {
   let offset = inputOffset;
   const end = offset + byteLength;
 
@@ -123,7 +139,8 @@ export function utf8DecodeJs(bytes: Uint8Array, inputOffset: number, byteLength:
       const byte2 = bytes[offset++] & 0x3f;
       const byte3 = bytes[offset++] & 0x3f;
       const byte4 = bytes[offset++] & 0x3f;
-      let unit = ((byte1 & 0x07) << 0x12) | (byte2 << 0x0c) | (byte3 << 0x06) | byte4;
+      let unit = ((byte1 & 0x07) << 0x12) | (byte2 << 0x0c) | (byte3 << 0x06) |
+        byte4;
       if (unit > 0xffff) {
         unit -= 0x10000;
         units.push(((unit >>> 10) & 0x3ff) | 0xd800);
@@ -150,7 +167,11 @@ export function utf8DecodeJs(bytes: Uint8Array, inputOffset: number, byteLength:
 const sharedTextDecoder = new TextDecoder();
 export const TEXT_DECODER_THRESHOLD = 200;
 
-export function utf8DecodeTD(bytes: Uint8Array, inputOffset: number, byteLength: number): string {
+export function utf8DecodeTD(
+  bytes: Uint8Array,
+  inputOffset: number,
+  byteLength: number,
+): string {
   const stringBytes = bytes.subarray(inputOffset, inputOffset + byteLength);
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return sharedTextDecoder!.decode(stringBytes);

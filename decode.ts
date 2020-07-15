@@ -2,38 +2,39 @@ import { ExtensionCodecType } from "./ExtensionCodec.ts";
 import { Decoder } from "./Decoder.ts";
 import { ContextOf, SplitUndefined } from "./context.ts";
 
-export type DecodeOptions<ContextType = undefined> = Readonly<
-  Partial<{
-    extensionCodec: ExtensionCodecType<ContextType>;
+export type DecodeOptions<ContextType = undefined> =
+  & Readonly<
+    Partial<{
+      extensionCodec: ExtensionCodecType<ContextType>;
 
-    /**
+      /**
      * Maximum string length.
      * Default to 4_294_967_295 (UINT32_MAX).
      */
-    maxStrLength: number;
-    /**
+      maxStrLength: number;
+      /**
      * Maximum binary length.
      * Default to 4_294_967_295 (UINT32_MAX).
      */
-    maxBinLength: number;
-    /**
+      maxBinLength: number;
+      /**
      * Maximum array length.
      * Default to 4_294_967_295 (UINT32_MAX).
      */
-    maxArrayLength: number;
-    /**
+      maxArrayLength: number;
+      /**
      * Maximum map length.
      * Default to 4_294_967_295 (UINT32_MAX).
      */
-    maxMapLength: number;
-    /**
+      maxMapLength: number;
+      /**
      * Maximum extension length.
      * Default to 4_294_967_295 (UINT32_MAX).
      */
-    maxExtLength: number;
-  }>
-> &
-  ContextOf<ContextType>;
+      maxExtLength: number;
+    }>
+  >
+  & ContextOf<ContextType>;
 
 export const defaultDecodeOptions: DecodeOptions = {};
 
@@ -44,7 +45,8 @@ export const defaultDecodeOptions: DecodeOptions = {};
  */
 export function decode<ContextType>(
   buffer: ArrayLike<number> | ArrayBuffer,
-  options: DecodeOptions<SplitUndefined<ContextType>> = defaultDecodeOptions as any,
+  options: DecodeOptions<SplitUndefined<ContextType>> =
+    defaultDecodeOptions as any,
 ): unknown {
   const decoder = new Decoder<ContextType>(
     options.extensionCodec,

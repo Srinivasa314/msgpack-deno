@@ -6,7 +6,9 @@
 // See https://streams.spec.whatwg.org/ for details
 export type ReadableStreamLike<T> = AsyncIterable<T> | ReadableStream<T>;
 
-export function isAsyncIterable<T>(object: ReadableStreamLike<T>): object is AsyncIterable<T> {
+export function isAsyncIterable<T>(
+  object: ReadableStreamLike<T>,
+): object is AsyncIterable<T> {
   return (object as any)[Symbol.asyncIterator] != null;
 }
 
@@ -16,7 +18,9 @@ function assertNonNull<T>(value: T | null | undefined): asserts value is T {
   }
 }
 
-export async function* asyncIterableFromStream<T>(stream: ReadableStream<T>): AsyncIterable<T> {
+export async function* asyncIterableFromStream<T>(
+  stream: ReadableStream<T>,
+): AsyncIterable<T> {
   const reader = stream.getReader();
 
   try {
@@ -33,7 +37,9 @@ export async function* asyncIterableFromStream<T>(stream: ReadableStream<T>): As
   }
 }
 
-export function ensureAsyncIterabe<T>(streamLike: ReadableStreamLike<T>): AsyncIterable<T> {
+export function ensureAsyncIterabe<T>(
+  streamLike: ReadableStreamLike<T>,
+): AsyncIterable<T> {
   if (isAsyncIterable(streamLike)) {
     return streamLike;
   } else {

@@ -1,4 +1,6 @@
-export function ensureUint8Array(buffer: ArrayLike<number> | Uint8Array | ArrayBufferView | ArrayBuffer) {
+export function ensureUint8Array(
+  buffer: ArrayLike<number> | Uint8Array | ArrayBufferView | ArrayBuffer,
+) {
   if (buffer instanceof Uint8Array) {
     return buffer;
   } else if (ArrayBuffer.isView(buffer)) {
@@ -11,11 +13,17 @@ export function ensureUint8Array(buffer: ArrayLike<number> | Uint8Array | ArrayB
   }
 }
 
-export function createDataView(buffer: ArrayLike<number> | ArrayBufferView | ArrayBuffer): DataView {
+export function createDataView(
+  buffer: ArrayLike<number> | ArrayBufferView | ArrayBuffer,
+): DataView {
   if (buffer instanceof ArrayBuffer) {
     return new DataView(buffer);
   }
 
   const bufferView = ensureUint8Array(buffer);
-  return new DataView(bufferView.buffer, bufferView.byteOffset, bufferView.byteLength);
+  return new DataView(
+    bufferView.buffer,
+    bufferView.byteOffset,
+    bufferView.byteLength,
+  );
 }

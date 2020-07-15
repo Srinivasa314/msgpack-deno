@@ -5,7 +5,8 @@ import { SplitUndefined } from "./context.ts";
 
 export async function decodeAsync<ContextType>(
   streamLike: ReadableStreamLike<ArrayLike<number>>,
-  options: DecodeOptions<SplitUndefined<ContextType>> = defaultDecodeOptions as any,
+  options: DecodeOptions<SplitUndefined<ContextType>> =
+    defaultDecodeOptions as any,
 ): Promise<unknown> {
   const stream = ensureAsyncIterabe(streamLike);
 
@@ -23,7 +24,8 @@ export async function decodeAsync<ContextType>(
 
 export function decodeArrayStream<ContextType>(
   streamLike: ReadableStreamLike<ArrayLike<number>>,
-  options: DecodeOptions<SplitUndefined<ContextType>> = defaultDecodeOptions as any,
+  options: DecodeOptions<SplitUndefined<ContextType>> =
+    defaultDecodeOptions as any,
 ) {
   const stream = ensureAsyncIterabe(streamLike);
 
@@ -42,7 +44,8 @@ export function decodeArrayStream<ContextType>(
 
 export function decodeStream<ContextType>(
   streamLike: ReadableStreamLike<ArrayLike<number>>,
-  options: DecodeOptions<SplitUndefined<ContextType>> = defaultDecodeOptions as any,
+  options: DecodeOptions<SplitUndefined<ContextType>> =
+    defaultDecodeOptions as any,
 ) {
   const stream = ensureAsyncIterabe(streamLike);
 

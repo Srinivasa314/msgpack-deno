@@ -9,7 +9,10 @@ export type ExtensionDecoderType<ContextType> = (
   context: ContextType,
 ) => unknown;
 
-export type ExtensionEncoderType<ContextType> = (input: unknown, context: ContextType) => Uint8Array | null;
+export type ExtensionEncoderType<ContextType> = (
+  input: unknown,
+  context: ContextType,
+) => Uint8Array | null;
 
 // immutable interfce to ExtensionCodec
 export type ExtensionCodecType<ContextType> = {
@@ -19,8 +22,10 @@ export type ExtensionCodecType<ContextType> = {
   decode(data: Uint8Array, extType: number, context: ContextType): unknown;
 };
 
-export class ExtensionCodec<ContextType = undefined> implements ExtensionCodecType<ContextType> {
-  public static readonly defaultCodec: ExtensionCodecType<undefined> = new ExtensionCodec();
+export class ExtensionCodec<ContextType = undefined>
+  implements ExtensionCodecType<ContextType> {
+  public static readonly defaultCodec: ExtensionCodecType<undefined> =
+    new ExtensionCodec();
 
   // ensures ExtensionCodecType<X> matches ExtensionCodec<X>
   // this will make type errors a lot more clear
@@ -28,12 +33,20 @@ export class ExtensionCodec<ContextType = undefined> implements ExtensionCodecTy
   __brand?: ContextType;
 
   // built-in extensions
-  private readonly builtInEncoders: Array<ExtensionEncoderType<ContextType> | undefined | null> = [];
-  private readonly builtInDecoders: Array<ExtensionDecoderType<ContextType> | undefined | null> = [];
+  private readonly builtInEncoders: Array<
+    ExtensionEncoderType<ContextType> | undefined | null
+  > = [];
+  private readonly builtInDecoders: Array<
+    ExtensionDecoderType<ContextType> | undefined | null
+  > = [];
 
   // custom extensions
-  private readonly encoders: Array<ExtensionEncoderType<ContextType> | undefined | null> = [];
-  private readonly decoders: Array<ExtensionDecoderType<ContextType> | undefined | null> = [];
+  private readonly encoders: Array<
+    ExtensionEncoderType<ContextType> | undefined | null
+  > = [];
+  private readonly decoders: Array<
+    ExtensionDecoderType<ContextType> | undefined | null
+  > = [];
 
   public constructor() {
     this.register(timestampExtension);
@@ -93,7 +106,9 @@ export class ExtensionCodec<ContextType = undefined> implements ExtensionCodecTy
   }
 
   public decode(data: Uint8Array, type: number, context: ContextType): unknown {
-    const decoder = type < 0 ? this.builtInDecoders[-1 - type] : this.decoders[type];
+    const decoder = type < 0
+      ? this.builtInDecoders[-1 - type]
+      : this.decoders[type];
     if (decoder) {
       return decoder(data, type, context);
     } else {

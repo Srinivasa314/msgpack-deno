@@ -4,7 +4,7 @@
 ## Example
 
 ```typescript
-import { encode, decode } from 'https://denopkg.com/Srinivasa314/msgpack-deno/mod.ts';
+import { encode, decode } from 'https://deno.land/x/msgpack/mod.ts';
 
 const object = {
   nil: null,

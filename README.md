@@ -4,7 +4,7 @@
 ## Example
 
 ```typescript
-import { encode, decode } from 'https://deno.land/x/msgpack/mod.ts';
+import { encode, decode } from 'https://deno.land/x/msgpack@1.0/mod.ts';
 
 const object = {
   nil: null,
@@ -18,5 +18,6 @@ const object = {
 };
 
 const encoded: Uint8Array = encode(object);
+console.log(decode(encoded))
 
 ```

@@ -1,4 +1,6 @@
 # msgpack-deno
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/msgpack@1.0/mod.ts)
+
 [msgpack-javascript](https://github.com/msgpack/msgpack-javascript) ported to Deno.
 
 ## Example

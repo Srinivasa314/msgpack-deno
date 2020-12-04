@@ -2,7 +2,7 @@ import { ExtensionCodecType } from "./ExtensionCodec.ts";
 import { Decoder } from "./Decoder.ts";
 import { ContextOf, SplitUndefined } from "./context.ts";
 
-export DecodeOptions<ContextType = undefined> =
+export type DecodeOptions<ContextType = undefined> =
   & Readonly<
     Partial<{
       extensionCodec: ExtensionCodecType<ContextType>;

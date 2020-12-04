@@ -16,14 +16,14 @@ export { Encoder } from "./Encoder.ts";
 
 // Utilitiies for Extension Types:
 
-export {
+export type {
   ExtensionCodec,
   ExtensionCodecType,
   ExtensionDecoderType,
   ExtensionEncoderType,
 } from "./ExtensionCodec.ts";
-export { ExtData } from "./ExtData.ts";
-export {
+export type { ExtData } from "./ExtData.ts";
+export type {
   EXT_TIMESTAMP,
   encodeDateToTimeSpec,
   encodeTimeSpecToTimestamp,

@@ -4,7 +4,7 @@
 // ReadableStream is also AsyncIterable, but
 // as of June 2019, no browser implements it.
 // See https://streams.spec.whatwg.org/ for details
-export type ReadableStreamLike<T> = AsyncIterable<T> | ReadableStream<T>;
+export ReadableStreamLike<T> = AsyncIterable<T> | ReadableStream<T>;
 
 export function isAsyncIterable<T>(
   object: ReadableStreamLike<T>,

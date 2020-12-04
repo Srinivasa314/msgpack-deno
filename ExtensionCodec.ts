@@ -3,19 +3,19 @@
 import { ExtData } from "./ExtData.ts";
 import { timestampExtension } from "./timestamp.ts";
 
-export type ExtensionDecoderType<ContextType> = (
+export ExtensionDecoderType<ContextType> = (
   data: Uint8Array,
   extensionType: number,
   context: ContextType,
 ) => unknown;
 
-export type ExtensionEncoderType<ContextType> = (
+export ExtensionEncoderType<ContextType> = (
   input: unknown,
   context: ContextType,
 ) => Uint8Array | null;
 
 // immutable interfce to ExtensionCodec
-export type ExtensionCodecType<ContextType> = {
+export ExtensionCodecType<ContextType> = {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   __brand?: ContextType;
   tryToEncode(object: unknown, context: ContextType): ExtData | null;

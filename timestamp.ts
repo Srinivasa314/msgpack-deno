@@ -3,7 +3,7 @@ import { getInt64, setInt64 } from "./utils/int.ts";
 
 export const EXT_TIMESTAMP = -1;
 
-export type TimeSpec = {
+export TimeSpec = {
   sec: number;
   nsec: number;
 };

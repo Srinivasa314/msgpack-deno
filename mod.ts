@@ -1,7 +1,9 @@
 // Main Functions:
 
-export { encode, EncodeOptions } from "./encode.ts";
-export { decode, DecodeOptions } from "./decode.ts";
+export { encode } from "./encode.ts";
+export type  { EncodeOptions } from "./encode.ts";
+export { decode } from "./decode.ts";
+export type  { DecodeOptions } from "./decode.ts";
 export { decodeAsync, decodeArrayStream, decodeStream } from "./decodeAsync.ts";
 
 /**
@@ -16,14 +18,14 @@ export { Encoder } from "./Encoder.ts";
 
 // Utilitiies for Extension Types:
 
-export {
+export type {
   ExtensionCodec,
   ExtensionCodecType,
   ExtensionDecoderType,
   ExtensionEncoderType,
 } from "./ExtensionCodec.ts";
-export { ExtData } from "./ExtData.ts";
-export {
+export type { ExtData } from "./ExtData.ts";
+export type {
   EXT_TIMESTAMP,
   encodeDateToTimeSpec,
   encodeTimeSpecToTimestamp,

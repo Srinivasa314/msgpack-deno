@@ -1,12 +1,12 @@
 # msgpack-deno
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/msgpack@1.1/mod.ts)
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/msgpack@v1.2/mod.ts)
 
 [msgpack-javascript](https://github.com/msgpack/msgpack-javascript) ported to Deno.
 
 ## Example
 
 ```typescript
-import { encode, decode } from 'https://deno.land/x/msgpack@1.1/mod.ts';
+import { encode, decode } from 'https://deno.land/x/msgpack@v1.2/mod.ts';
 
 const object = {
   nil: null,

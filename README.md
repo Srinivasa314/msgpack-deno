@@ -23,3 +23,16 @@ const encoded: Uint8Array = encode(object);
 console.log(decode(encoded))
 
 ```
+
+
+This includes code from msgpack-javascript used under the following license:
+```
+Copyright 2019 The MessagePack community.
+
+This software uses the ISC license:
+
+https://opensource.org/licenses/ISC
+```
+
+
+

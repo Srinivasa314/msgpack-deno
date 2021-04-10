@@ -97,6 +97,10 @@ export class Decoder<ContextType> {
   }
 
   private appendBuffer(buffer: ArrayLike<number>) {
+    // Create a fresh copy of `buffer` while caller might re-use and
+    // modify the content of the `buffer`.
+    // This cause data pollution issue like #2.
+    buffer = ensureUint8Array(buffer).slice();
     if (this.headByte === HEAD_BYTE_REQUIRED && !this.hasRemaining()) {
       this.setBuffer(buffer);
     } else {

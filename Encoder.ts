@@ -14,8 +14,8 @@ export const DEFAULT_INITIAL_BUFFER_SIZE = 2048;
 
 export class Encoder<ContextType> {
   private pos = 0;
-  private view = new DataView(new ArrayBuffer(this.initialBufferSize));
-  private bytes = new Uint8Array(this.view.buffer);
+  private view;
+  private bytes;
 
   public constructor(
     private readonly extensionCodec: ExtensionCodecType<ContextType> =
@@ -26,7 +26,10 @@ export class Encoder<ContextType> {
     private readonly sortKeys = false,
     private readonly forceFloat32 = false,
     private readonly ignoreUndefined = false,
-  ) {}
+  ) {
+    this.view = new DataView(new ArrayBuffer(this.initialBufferSize));
+    this.bytes = new Uint8Array(this.view.buffer);
+  }
 
   private getUint8Array(): Uint8Array {
     return this.bytes.subarray(0, this.pos);

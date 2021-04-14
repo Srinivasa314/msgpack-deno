@@ -18,8 +18,8 @@ export { Encoder } from "./Encoder.ts";
 
 // Utilitiies for Extension Types:
 
+export { ExtensionCodec } from "./ExtensionCodec.ts";
 export type {
-  ExtensionCodec,
   ExtensionCodecType,
   ExtensionDecoderType,
   ExtensionEncoderType,

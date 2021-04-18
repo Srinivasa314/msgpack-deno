@@ -92,13 +92,15 @@ export class Decoder<ContextType> {
     this.headByte = HEAD_BYTE_REQUIRED;
   }
 
-  private setBuffer(buffer: ArrayLike<number> | ArrayBuffer): void {
+  private setBuffer(
+    buffer: ArrayLike<number> | ArrayBuffer | BufferSource,
+  ): void {
     this.bytes = ensureUint8Array(buffer);
     this.view = createDataView(this.bytes);
     this.pos = 0;
   }
 
-  private appendBuffer(buffer: ArrayLike<number>) {
+  private appendBuffer(buffer: ArrayLike<number> | BufferSource) {
     // Create a fresh copy of `buffer` while caller might re-use and
     // modify the content of the `buffer`.
     // This cause data pollution issue like #2.
@@ -143,7 +145,7 @@ export class Decoder<ContextType> {
   }
 
   public async decodeAsync(
-    stream: AsyncIterable<ArrayLike<number>>,
+    stream: AsyncIterable<ArrayLike<number> | BufferSource>,
   ): Promise<unknown> {
     let decoded = false;
     let object: unknown;

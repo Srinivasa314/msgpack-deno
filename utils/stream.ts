@@ -39,7 +39,7 @@ export async function* asyncIterableFromStream<T>(
 }
 
 export function ensureAsyncIterabe<T>(
-  streamLike: ReadableStreamLike<T>,
+  streamLike: ReadableStreamLike<T> | AsyncGenerator<T, void, unknown>,
 ): AsyncIterable<T> {
   if (isAsyncIterable(streamLike)) {
     return streamLike;

@@ -4,7 +4,9 @@ import { ensureAsyncIterabe, ReadableStreamLike } from "./utils/stream.ts";
 import { SplitUndefined } from "./context.ts";
 
 export function decodeAsync<ContextType>(
-  streamLike: ReadableStreamLike<ArrayLike<number>>,
+  streamLike:
+    | ReadableStreamLike<ArrayLike<number>>
+    | AsyncGenerator<ArrayLike<number> | BufferSource, void, unknown>,
   options: DecodeOptions<SplitUndefined<ContextType>> =
     // deno-lint-ignore no-explicit-any
     defaultDecodeOptions as any,

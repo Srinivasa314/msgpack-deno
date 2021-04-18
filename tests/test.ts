@@ -1,5 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.68.0/testing/asserts.ts";
-
+import { assertEquals } from "./deps.ts";
 import { decode, encode } from "../mod.ts";
 
 // deno-lint-ignore no-explicit-any

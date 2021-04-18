@@ -1,6 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.68.0/testing/asserts.ts";
-import * as io from "https://deno.land/std@0.93.0/io/mod.ts";
-
+import { assertEquals, io } from "./deps.ts";
 import { decodeStream, encode } from "../mod.ts";
 
 Deno.test("Test whether decodeStream properly handles complete data", async () => {

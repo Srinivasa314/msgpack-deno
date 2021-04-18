@@ -24,12 +24,12 @@ export class Encoder<ContextType> {
     // deno-lint-ignore no-explicit-any
     private readonly context: ContextType = undefined as any,
     private readonly maxDepth = DEFAULT_MAX_DEPTH,
-    initialBufferSize = DEFAULT_INITIAL_BUFFER_SIZE,
+    private readonly initialBufferSize = DEFAULT_INITIAL_BUFFER_SIZE,
     private readonly sortKeys = false,
     private readonly forceFloat32 = false,
     private readonly ignoreUndefined = false,
   ) {
-    this.view = new DataView(new ArrayBuffer(initialBufferSize));
+    this.view = new DataView(new ArrayBuffer(this.initialBufferSize));
     this.bytes = new Uint8Array(this.view.buffer);
   }
 

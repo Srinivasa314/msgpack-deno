@@ -2,6 +2,7 @@ import { assertEquals } from "https://deno.land/std@0.68.0/testing/asserts.ts";
 
 import { decode, encode } from "../mod.ts";
 
+// deno-lint-ignore no-explicit-any
 function test(obj: any) {
   assertEquals(obj, decode(encode(obj)));
 }

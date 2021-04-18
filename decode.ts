@@ -46,10 +46,12 @@ export const defaultDecodeOptions: DecodeOptions = {};
 export function decode<ContextType>(
   buffer: ArrayLike<number> | ArrayBuffer,
   options: DecodeOptions<SplitUndefined<ContextType>> =
+    // deno-lint-ignore no-explicit-any
     defaultDecodeOptions as any,
 ): unknown {
   const decoder = new Decoder<ContextType>(
     options.extensionCodec,
+    // deno-lint-ignore no-explicit-any
     (options as typeof options & { context: any }).context,
     options.maxStrLength,
     options.maxBinLength,

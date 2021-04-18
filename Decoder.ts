@@ -75,7 +75,9 @@ export class Decoder<ContextType> {
 
   public constructor(
     private readonly extensionCodec: ExtensionCodecType<ContextType> =
+      // deno-lint-ignore no-explicit-any
       ExtensionCodec.defaultCodec as any,
+    // deno-lint-ignore no-explicit-any
     private readonly context: ContextType = undefined as any,
     private readonly maxStrLength = DEFAULT_MAX_LENGTH,
     private readonly maxBinLength = DEFAULT_MAX_LENGTH,

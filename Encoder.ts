@@ -19,7 +19,9 @@ export class Encoder<ContextType> {
 
   public constructor(
     private readonly extensionCodec: ExtensionCodecType<ContextType> =
+      // deno-lint-ignore no-explicit-any
       ExtensionCodec.defaultCodec as any,
+    // deno-lint-ignore no-explicit-any
     private readonly context: ContextType = undefined as any,
     private readonly maxDepth = DEFAULT_MAX_DEPTH,
     private readonly initialBufferSize = DEFAULT_INITIAL_BUFFER_SIZE,

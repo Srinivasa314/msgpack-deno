@@ -39,10 +39,12 @@ const defaultEncodeOptions: EncodeOptions = {};
 export function encode<ContextType>(
   value: unknown,
   options: EncodeOptions<SplitUndefined<ContextType>> =
+    // deno-lint-ignore no-explicit-any
     defaultEncodeOptions as any,
 ): Uint8Array {
   const encoder = new Encoder<ContextType>(
     options.extensionCodec,
+    // deno-lint-ignore no-explicit-any
     (options as typeof options & { context: any }).context,
     options.maxDepth,
     options.initialBufferSize,

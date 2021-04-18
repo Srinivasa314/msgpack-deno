@@ -24,8 +24,8 @@ export type {
   ExtensionDecoderType,
   ExtensionEncoderType,
 } from "./ExtensionCodec.ts";
-export type { ExtData } from "./ExtData.ts";
-export type {
+export { ExtData } from "./ExtData.ts";
+export {
   decodeTimestampExtension,
   decodeTimestampToTimeSpec,
   encodeDateToTimeSpec,

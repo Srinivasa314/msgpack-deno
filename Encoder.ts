@@ -1,7 +1,7 @@
 import {
-  utf8EncodeJs,
-  utf8Count,
   TEXT_ENCODER_THRESHOLD,
+  utf8Count,
+  utf8EncodeJs,
   utf8EncodeTE,
 } from "./utils/utf8.ts";
 import { ExtensionCodec, ExtensionCodecType } from "./ExtensionCodec.ts";
@@ -177,7 +177,7 @@ export class Encoder<ContextType> {
     const maxHeaderSize = 1 + 4;
     const strLength = object.length;
 
-    if ( strLength > TEXT_ENCODER_THRESHOLD) {
+    if (strLength > TEXT_ENCODER_THRESHOLD) {
       const byteLength = utf8Count(object);
       this.ensureBufferSizeToWrite(maxHeaderSize + byteLength);
       this.writeStringHeader(byteLength);

@@ -2,8 +2,8 @@ import { prettyByte } from "./utils/prettyByte.ts";
 import { ExtensionCodec, ExtensionCodecType } from "./ExtensionCodec.ts";
 import { getInt64, getUint64 } from "./utils/int.ts";
 import {
-  utf8DecodeJs,
   TEXT_DECODER_THRESHOLD,
+  utf8DecodeJs,
   utf8DecodeTD,
 } from "./utils/utf8.ts";
 import { createDataView, ensureUint8Array } from "./utils/typedArrays.ts";

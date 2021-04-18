@@ -1,8 +1,6 @@
-import {
-  assertEquals,
-} from "https://deno.land/std@0.68.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.68.0/testing/asserts.ts";
 
-import { encode, decode } from "../mod.ts";
+import { decode, encode } from "../mod.ts";
 
 function test(obj: any) {
   assertEquals(obj, decode(encode(obj)));

@@ -1,5 +1,5 @@
 import { Decoder } from "./Decoder.ts";
-import { defaultDecodeOptions, DecodeOptions } from "./decode.ts";
+import { DecodeOptions, defaultDecodeOptions } from "./decode.ts";
 import { ensureAsyncIterabe, ReadableStreamLike } from "./utils/stream.ts";
 import { SplitUndefined } from "./context.ts";
 

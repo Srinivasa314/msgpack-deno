@@ -88,15 +88,6 @@ export function utf8EncodeJs(
 const sharedTextEncoder = new TextEncoder();
 export const TEXT_ENCODER_THRESHOLD = 200;
 
-function utf8EncodeTEencode(
-  str: string,
-  output: Uint8Array,
-  outputOffset: number,
-): void {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  output.set(sharedTextEncoder!.encode(str), outputOffset);
-}
-
 function utf8EncodeTEencodeInto(
   str: string,
   output: Uint8Array,

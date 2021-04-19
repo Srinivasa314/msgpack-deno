@@ -9,6 +9,7 @@ export type ReadableStreamLike<T> = AsyncIterable<T> | ReadableStream<T>;
 export function isAsyncIterable<T>(
   object: ReadableStreamLike<T>,
 ): object is AsyncIterable<T> {
+  // deno-lint-ignore no-explicit-any
   return (object as any)[Symbol.asyncIterator] != null;
 }
 
@@ -38,7 +39,7 @@ export async function* asyncIterableFromStream<T>(
 }
 
 export function ensureAsyncIterabe<T>(
-  streamLike: ReadableStreamLike<T>,
+  streamLike: ReadableStreamLike<T> | AsyncGenerator<T, void, unknown>,
 ): AsyncIterable<T> {
   if (isAsyncIterable(streamLike)) {
     return streamLike;

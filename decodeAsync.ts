@@ -1,17 +1,21 @@
 import { Decoder } from "./Decoder.ts";
-import { defaultDecodeOptions, DecodeOptions } from "./decode.ts";
+import { DecodeOptions, defaultDecodeOptions } from "./decode.ts";
 import { ensureAsyncIterabe, ReadableStreamLike } from "./utils/stream.ts";
 import { SplitUndefined } from "./context.ts";
 
-export async function decodeAsync<ContextType>(
-  streamLike: ReadableStreamLike<ArrayLike<number>>,
+export function decodeAsync<ContextType>(
+  streamLike:
+    | ReadableStreamLike<ArrayLike<number>>
+    | AsyncGenerator<ArrayLike<number> | BufferSource, void, unknown>,
   options: DecodeOptions<SplitUndefined<ContextType>> =
+    // deno-lint-ignore no-explicit-any
     defaultDecodeOptions as any,
 ): Promise<unknown> {
   const stream = ensureAsyncIterabe(streamLike);
 
   const decoder = new Decoder<ContextType>(
     options.extensionCodec,
+    // deno-lint-ignore no-explicit-any
     (options as typeof options & { context: any }).context,
     options.maxStrLength,
     options.maxBinLength,
@@ -25,12 +29,14 @@ export async function decodeAsync<ContextType>(
 export function decodeArrayStream<ContextType>(
   streamLike: ReadableStreamLike<ArrayLike<number>>,
   options: DecodeOptions<SplitUndefined<ContextType>> =
+    // deno-lint-ignore no-explicit-any
     defaultDecodeOptions as any,
 ) {
   const stream = ensureAsyncIterabe(streamLike);
 
   const decoder = new Decoder<ContextType>(
     options.extensionCodec,
+    // deno-lint-ignore no-explicit-any
     (options as typeof options & { context: any }).context,
     options.maxStrLength,
     options.maxBinLength,
@@ -45,12 +51,14 @@ export function decodeArrayStream<ContextType>(
 export function decodeStream<ContextType>(
   streamLike: ReadableStreamLike<ArrayLike<number>>,
   options: DecodeOptions<SplitUndefined<ContextType>> =
+    // deno-lint-ignore no-explicit-any
     defaultDecodeOptions as any,
 ) {
   const stream = ensureAsyncIterabe(streamLike);
 
   const decoder = new Decoder<ContextType>(
     options.extensionCodec,
+    // deno-lint-ignore no-explicit-any
     (options as typeof options & { context: any }).context,
     options.maxStrLength,
     options.maxBinLength,

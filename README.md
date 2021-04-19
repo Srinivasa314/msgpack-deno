@@ -1,12 +1,14 @@
 # msgpack-deno
+
 [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/msgpack@v1.2/mod.ts)
 
-[msgpack-javascript](https://github.com/msgpack/msgpack-javascript) ported to Deno.
+[msgpack-javascript](https://github.com/msgpack/msgpack-javascript) ported to
+Deno.
 
 ## Example
 
 ```typescript
-import { encode, decode } from 'https://deno.land/x/msgpack@v1.2/mod.ts';
+import { decode, encode } from "https://deno.land/x/msgpack@v1.2/mod.ts";
 
 const object = {
   nil: null,
@@ -20,12 +22,11 @@ const object = {
 };
 
 const encoded: Uint8Array = encode(object);
-console.log(decode(encoded))
-
+console.log(decode(encoded));
 ```
 
-
 This includes code from msgpack-javascript used under the following license:
+
 ```
 Copyright 2019 The MessagePack community.
 
@@ -33,6 +34,3 @@ This software uses the ISC license:
 
 https://opensource.org/licenses/ISC
 ```
-
-
-

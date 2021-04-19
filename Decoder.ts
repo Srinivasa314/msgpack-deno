@@ -2,8 +2,8 @@ import { prettyByte } from "./utils/prettyByte.ts";
 import { ExtensionCodec, ExtensionCodecType } from "./ExtensionCodec.ts";
 import { getInt64, getUint64 } from "./utils/int.ts";
 import {
-  utf8DecodeJs,
   TEXT_DECODER_THRESHOLD,
+  utf8DecodeJs,
   utf8DecodeTD,
 } from "./utils/utf8.ts";
 import { createDataView, ensureUint8Array } from "./utils/typedArrays.ts";
@@ -75,7 +75,9 @@ export class Decoder<ContextType> {
 
   public constructor(
     private readonly extensionCodec: ExtensionCodecType<ContextType> =
+      // deno-lint-ignore no-explicit-any
       ExtensionCodec.defaultCodec as any,
+    // deno-lint-ignore no-explicit-any
     private readonly context: ContextType = undefined as any,
     private readonly maxStrLength = DEFAULT_MAX_LENGTH,
     private readonly maxBinLength = DEFAULT_MAX_LENGTH,
@@ -90,13 +92,15 @@ export class Decoder<ContextType> {
     this.headByte = HEAD_BYTE_REQUIRED;
   }
 
-  private setBuffer(buffer: ArrayLike<number> | ArrayBuffer): void {
+  private setBuffer(
+    buffer: ArrayLike<number> | ArrayBuffer | BufferSource,
+  ): void {
     this.bytes = ensureUint8Array(buffer);
     this.view = createDataView(this.bytes);
     this.pos = 0;
   }
 
-  private appendBuffer(buffer: ArrayLike<number>) {
+  private appendBuffer(buffer: ArrayLike<number> | BufferSource) {
     // Create a fresh copy of `buffer` while caller might re-use and
     // modify the content of the `buffer`.
     // This cause data pollution issue like #2.
@@ -141,7 +145,7 @@ export class Decoder<ContextType> {
   }
 
   public async decodeAsync(
-    stream: AsyncIterable<ArrayLike<number>>,
+    stream: AsyncIterable<ArrayLike<number> | BufferSource>,
   ): Promise<unknown> {
     let decoded = false;
     let object: unknown;
